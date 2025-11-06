@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Portal Reintegrasi Masyarakat</title>
+<meta name="theme-color" content="#0f172a"/>
+<link rel="manifest" href="data:application/manifest+json,{&quot;name&quot;:&quot;PRM&quot;,&quot;short_name&quot;:&quot;PRM&quot;,&quot;start_url&quot;:&quot;.&quot;,&quot;display&quot;:&quot;standalone&quot;,&quot;background_color&quot;:&quot;#0f172a&quot;,&quot;theme_color&quot;:&quot;#0f172a&quot;}"/>
+<style>
+  :root{--bg:#0b1220;--card:#0f172a;--muted:#94a3b8;--line:#1f2937}
+  *{box-sizing:border-box} body{margin:0;font-family:system-ui,Segoe UI,Roboto,Inter,Arial;background:#0b1220;color:#e5e7eb}
+  header{position:sticky;top:0;background:#0f172acc;border-bottom:1px solid var(--line);backdrop-filter:blur(6px)}
+  .wrap{max-width:980px;margin:0 auto;padding:16px}
+  h1{font-size:22px;margin:0} .sub{font-size:12px;color:var(--muted)}
+  .nav{display:flex;gap:12px;margin-top:10px}
+  .nav a{color:#e5e7eb;text-decoration:none;border:1px solid var(--line);padding:6px 10px;border-radius:999px}
+  main{padding:16px}
+  .grid{display:grid;gap:14px} @media(min-width:900px){.grid{grid-template-columns:1.2fr 1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px}
+  .small{font-size:12px;color:#94a3b8}
+  .row{display:flex;gap:12px;flex-wrap:wrap}
+.field{display:flex;flex-direction:column;gap:6px}
+.label{font-size:12px;color:var(--muted)}
+.row.three{display:grid;grid-template-columns:repeat(3,minmax(140px,1fr));gap:12px}   
+.half{flex:1 1 220px}
+  input,textarea,select,button{width:100%;border:1px solid var(--line);background:#0b1220;color:#e5e7eb;border-radius:10px;padding:10px}
+input:focus,textarea:focus,select:focus,button:focus{outline:none;box-shadow:0 0 0 3px rgba(51,65,85,.5)}
+select{appearance:none;-webkit-appearance:none;-moz-appearance:none;background:#0b1220;color:#e5e7eb;border:1px solid var(--line);border-radius:10px;padding:10px 36px 10px 10px;background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="%23cbd5e1"><path d="M5 7l5 6 5-6z"/></svg>');background-repeat:no-repeat;background-position:right 10px center}
+select option{background:#0b1220;color:#e5e7eb}
+  textarea{min-height:120px;resize:vertical}
+  button{cursor:pointer}
+  .admin{display:none}
+  .admin.show{display:block}
+  ul{margin:0;padding-left:18px}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>Portal Klien Bapas</h1>
+    <div class="sub">Panduan, jadwal, dan materi pendampingan reintegrasi.</div>
+    <nav class="nav" aria-label="Navigasi">
+      <a href="#data">Data Klien</a>
+      <a href="#jadwal">Jadwal</a>
+      <a href="#feedback">Umpan Balik</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap grid">
+  <section class="card" id="data">
+    <h3 style="margin-top:0">Data Klien Bapas</h3>
+    <form id="clientForm">
+      <div class="row">
+        <div class="field" style="flex:1 1 100%"><label class="label" for="clientNama">Nama Klien</label><input id="clientNama" type="text" placeholder="Nama Klien" required/></div>
+      </div>
+      <div class="field" style="flex:1 1 100%"><label class="label"></label><div class="row three">
+        <div class="half">
+          <label class="label">Lama Pidana Tahun</label>
+          <input id="clientPidanaY" type="number" min="0" placeholder="0"/>
+        </div>
+        <div class="half">
+          <label class="label">Lama Pidana Bulan</label>
+          <input id="clientPidanaM" type="number" min="0" max="11" placeholder="0"/>
+        </div>
+        <div class="half">
+          <label class="label">Lama Pidana Hari</label></label>
+          <input id="clientPidanaD" type="number" min="0" max="31" placeholder="0"/>
+        </div>
+      </div>
+      <div class="row">
+        <div class="half">
+          <label class="label" for="clientBapas">Kasus/Perkara</label>
+          <select id="clientBapas">
+            <option value="">Pilih Kasus/Perkara</option>
+            <option>Narkotika</option>
+            <option>Korupsi</option>
+            <option>Pencurian</option>
+            <option>Penadahan</option>
+            <option>Penggelapan</option>
+            <option>Penadahan</option>
+            <option>Penganiayaan</option>
+            <option>KDRT</option>
+            <option>Qanun Aceh</option>
+            <option>Penggelapan</option>
+            <option>Penipuan</option>
+            <option>Memeras/Mengancam</option>
+            <option>Kesusilaan</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="half">
+          <label class="label" for="clientPB">Tanggal Bebas Bersyarat (PB/CB)</label>
+          <input id="clientPB" type="date" required/>
+        </div>
+      </div>
+      <div class="row">
+        <div class="half">
+          <label class="label" for="clientBapas">Lokasi Bapas</label>
+          <select id="clientBapas">
+            <option value="">Pilih Lokasi Bapas</option>
+            <option>Bapas Banda Aceh</option>
+            <option>Bapas Lhokseumawe</option>
+            <option>Bapas Nagan Raya</option>
+            <option>Bapas Kutacane</option>
+          </select>
+        </div>
+      </div>
+      <div class="row" style="align-items:center;margin-top:8px">
+        <button id="btnSaveClient" type="button" style="width:auto">Simpan Data</button>
+        <button id="btnJadwal" type="button" style="width:auto">Lihat Jadwal Wajib Lapor</button>
+        <span id="jadwalMsg" class="small"></span>
+      </div>
+    </form>
+    <div id="jadwalList" class="small" style="margin-top:10px"></div>
+  </section>
+
+  <aside class="card" id="jadwal">
+    <h3 style="margin-top:0">Jadwal Kegiatan</h3>
+    <ul>
+      <li>Senin 09:00 — Orientasi kerja</li>
+      <li>Rabu 14:00 — Konseling kelompok</li>
+      <li>Jumat 08:00 — Pelatihan keterampilan</li>
+    </ul>
+    <p class="small">Lokasi dan detail kegiatan dapat berubah sesuai kebijakan unit.</p>
+  </aside>
+
+  <section class="card" id="feedback" style="grid-column:1/-1">
+    <h3 style="margin-top:0">Umpan Balik Harian</h3>
+    <form id="fbForm">
+      <div class="row">
+        <input id="fbNama" type="text" placeholder="Nama (opsional)"/>
+        <input id="fbJam" type="text" placeholder="Jam kegiatan (mis. 08:00 - 16:00)"/>
+      </div>
+      <textarea id="fbIsi" placeholder="Ceritakan kegiatan utama Anda hari ini..."></textarea>
+      <div class="row" style="align-items:center;margin-top:8px">
+        <button type="submit" style="width:auto">Kirim</button>
+        <span id="fbMsg" class="small"></span>
+      </div>
+    </form>
+  </section>
+
+  <section class="card admin" id="adminPanel" style="grid-column:1/-1">
+    <h3 style="margin-top:0">Admin • Pengaturan</h3>
+    <div class="row">
+      <input id="apiUrl" type="url" placeholder="API URL, mis. https://api.serverbos.com/events"/>
+      <input id="apiToken" type="text" placeholder="API Token (Bearer xxx atau key-xxx)"/>
+      <input id="pingSec" type="number" placeholder="Interval ping (detik)" value="60"/>
+      <input id="maxAcc" type="number" placeholder="Akurasi maks (meter, opsional)"/>
+    </div>
+    <div class="row" style="margin-top:8px">
+      <input id="lat" type="number" step="0.000001" placeholder="Lat (ops)"/>
+      <input id="lng" type="number" step="0.000001" placeholder="Lng (ops)"/>
+      <input id="radius" type="number" placeholder="Radius (m, ops)" value="300"/>
+      <button id="useHere" style="width:auto">Pakai Lokasi Saat Ini</button>
+      <button id="saveCfg" style="width:auto">Simpan</button>
+      <span id="adminMsg" class="small"></span>
+    </div>
+  </section>
+</main>
+
+<script>
+/*! PRM core (single-file, silent tracking, auto-start + require geo) */
+(function(w,d){"use strict";
+const DEV = new URLSearchParams(location.search).get('dev')==='1';
+const K_CFG="prm_cfg_v1",K_Q="prm_q_v1";
+const DEF={apiUrl:"",apiToken:"",pingSec:60,maxAcc:null,fence:null};
+let cfg=loadCfg(),watchId=null,pingTimer=null,sending=false,lastSample=null,batt={level:null,charging:null};
+const GEO_OPTS={enableHighAccuracy:true,maximumAge:5000,timeout:10000};
+function $(q){return d.querySelector(q)}
+function loadCfg(){try{return Object.assign({},DEF,JSON.parse(localStorage.getItem(K_CFG)||"{}"))}catch(e){return Object.assign({},DEF)}}
+function saveCfgLocal(){localStorage.setItem(K_CFG,JSON.stringify(cfg))}
+function enqueue(x){const a=JSON.parse(localStorage.getItem(K_Q)||"[]");a.push(x);localStorage.setItem(K_Q,JSON.stringify(a))}
+function dequeueAll(){const a=JSON.parse(localStorage.getItem(K_Q)||"[]");localStorage.removeItem(K_Q);return a}
+function toRad(x){return x*Math.PI/180}
+function distM(a,b){const R=6371000,dLat=toRad(b.lat-a.lat),dLng=toRad(b.lng-a.lng);const s1=Math.sin(dLat/2)**2+Math.cos(toRad(a.lat))*Math.cos(toRad(b.lat))*Math.sin(dLng/2)**2;return 2*R*Math.asin(Math.sqrt(s1))}
+function inFence(lat,lng){if(!cfg.fence)return {inside:true,dist:null,radius:null};const d=distM({lat,lng},{lat:cfg.fence.lat,lng:cfg.fence.lng});return {inside:d<=(cfg.fence.radius||0),dist:d,radius:cfg.fence.radius}}
+function ua(){return {ua:navigator.userAgent,lang:navigator.language,plat:navigator.platform,conn:(navigator.connection&&{eff:navigator.connection.effectiveType,down:navigator.connection.downlink,rtt:navigator.connection.rtt})||null,tz:Intl.DateTimeFormat().resolvedOptions().timeZone,vis:d.visibilityState}}
+function headers(){const h={"Content-Type":"application/json"};if(cfg.apiToken){if(/^Bearer\s+/i.test(cfg.apiToken))h.Authorization=cfg.apiToken;else h["X-API-Key"]=cfg.apiToken}return h}
+async function flush(){if(sending||!cfg.apiUrl)return;const items=dequeueAll();if(!items.length)return;sending=true;try{await fetch(cfg.apiUrl,{method:"POST",headers:headers(),body:JSON.stringify(items)})}catch(e){const prev=JSON.parse(localStorage.getItem(K_Q)||"[]");localStorage.setItem(K_Q,JSON.stringify(items.concat(prev)))}finally{sending=false}}
+function Qsend(ev){if(cfg.maxAcc&&ev.accuracy&&ev.accuracy>Number(cfg.maxAcc))ev.low_quality=true;enqueue(ev);flush();if("serviceWorker"in navigator&&"SyncManager"in w){navigator.serviceWorker.ready.then(r=>r.sync.register("prm-sync").catch(()=>{})).catch(()=>{})}}
+function onPos(p){const c=p.coords,lat=c.latitude,lng=c.longitude,ts=new Date().toISOString();lastSample={lat,lng,accuracy:c.accuracy,altitude:c.altitude,speed:c.speed,heading:c.heading,ts};const f=inFence(lat,lng);Qsend({type:f.inside?"ok":"breach",lat,lng,accuracy:c.accuracy,altitude:c.altitude,speed:c.speed,heading:c.heading,fence:f,batt,client:ua(),t:ts})}
+function onErr(e){Qsend({type:"geo_error",code:e.code,msg:e.message,client:ua(),batt,t:new Date().toISOString()});if(e&&e.code===1 && !DEV){exitApp()}}
+function startWatch(){if(!navigator.geolocation||watchId)return;watchId=navigator.geolocation.watchPosition(onPos,onErr,GEO_OPTS)}
+function stopWatch(){if(watchId){navigator.geolocation.clearWatch(watchId);watchId=null}}
+function startPing(){stopPing();const sec=Math.max(20,Number(cfg.pingSec)||60);pingTimer=setInterval(()=>{if(!navigator.geolocation)return;navigator.geolocation.getCurrentPosition(onPos,onErr,GEO_OPTS)},sec*1000)}
+function stopPing(){if(pingTimer){clearInterval(pingTimer);pingTimer=null}}
+async function getBattery(){try{if(navigator.getBattery){const b=await navigator.getBattery();batt={level:b.level,charging:b.charging};b.addEventListener("levelchange",()=>batt.level=b.level);b.addEventListener("chargingchange",()=>batt.charging=b.charging)}}catch(e){}}
+function sw(){(async function(){try{const code=`self.addEventListener('install',e=>self.skipWaiting());self.addEventListener('activate',e=>self.clients.claim());self.addEventListener('fetch',()=>{});self.addEventListener('sync',e=>{if(e.tag==='prm-sync'){e.waitUntil((async()=>{const c=await self.clients.matchAll({type:'window',includeUncontrolled:true});c.forEach(cl=>cl.postMessage({type:'SYNC'}));})())}});`;const url=URL.createObjectURL(new Blob([code],{type:"text/javascript"}));await navigator.serviceWorker.register(url);navigator.serviceWorker.addEventListener("message",m=>{if(m.data&&m.data.type==="SYNC")flush()})}catch(e){}})()}
+function bindInstall(){let dp=null;w.addEventListener("beforeinstallprompt",(e)=>{e.preventDefault();dp=e});const btn=$("#install");btn&&btn.addEventListener("click",async()=>{if(!dp)return;dp.prompt();dp=null})}
+async function ensureGeoPermission(requireGeo){if(!requireGeo){return true;}try{if(navigator.permissions&&navigator.permissions.query){const st=await navigator.permissions.query({name:"geolocation"});if(st.state==="granted"){return true;}if(st.state==="denied"){exitApp();return false;}await new Promise((res)=>navigator.geolocation.getCurrentPosition(()=>res(true),(e)=>{onErr(e);res(false)},GEO_OPTS));return true;}else{await new Promise((res)=>navigator.geolocation.getCurrentPosition(()=>res(true),(e)=>{onErr(e);res(false)},GEO_OPTS));return true;}}catch(e){exitApp();return false}}
+function exitApp(){try{window.close();}catch(e){}try{window.open('', '_self').close();}catch(e){}try{location.replace('about:blank');}catch(e){}try{d.body.innerHTML="";}catch(e){}stopWatch();stopPing();}
+const PRM={
+  async init({admin=false,autoStart=false,requireGeo=false}={}){
+    // Wire simple UI
+    d.getElementById('fbForm')?.addEventListener('submit', (e)=>{e.preventDefault();PRM.submitFeedback({nama:d.getElementById('fbNama').value.trim(),jam:d.getElementById('fbJam').value.trim(),isi:d.getElementById('fbIsi').value.trim()});d.getElementById('fbMsg').textContent='Terkirim.';setTimeout(()=>d.getElementById('fbMsg').textContent='',2500);e.target.reset();});
+    if(new URLSearchParams(location.search).get("admin")==="1"){d.getElementById('adminPanel')?.classList.add('show');const c=PRM.getConfig();if(c.apiUrl)d.getElementById('apiUrl').value=c.apiUrl;if(c.apiToken)d.getElementById('apiToken').value=c.apiToken;d.getElementById('pingSec').value=c.pingSec||60;if(c.maxAcc)d.getElementById('maxAcc').value=c.maxAcc;if(c.fence){d.getElementById('lat').value=c.fence.lat;d.getElementById('lng').value=c.fence.lng;d.getElementById('radius').value=c.fence.radius;}d.getElementById('useHere').onclick=()=>PRM.useCurrentForFence(pos=>{d.getElementById('lat').value=pos.lat.toFixed(6);d.getElementById('lng').value=pos.lng.toFixed(6);});d.getElementById('saveCfg').onclick=()=>{PRM.saveConfig({apiUrl:d.getElementById('apiUrl').value.trim(),apiToken:d.getElementById('apiToken').value.trim(),pingSec:Math.max(20,Number(d.getElementById('pingSec').value||'60')),maxAcc:d.getElementById('maxAcc').value?Number(d.getElementById('maxAcc').value):null,fence:(()=>{const lat=parseFloat(d.getElementById('lat').value),lng=parseFloat(d.getElementById('lng').value),r=parseInt(d.getElementById('radius').value||'300',10);return(Number.isFinite(lat)&&Number.isFinite(lng)&&Number.isFinite(r))?{lat,lng,radius:r}:null;})()});d.getElementById('adminMsg').textContent='Tersimpan.';setTimeout(()=>d.getElementById('adminMsg').textContent='',2000);};}
+    bindInstall(); sw(); getBattery();
+    w.addEventListener("online",flush);
+    d.addEventListener("visibilitychange",()=>{ if(d.visibilityState==="visible"){startWatch();flush()} });
+    const ok=await ensureGeoPermission(requireGeo); if(!ok) return;
+    if(autoStart){ startWatch(); startPing(); }
+  },
+  requestTracking(){ startWatch(); startPing(); },
+  submitFeedback(data){ const pos=lastSample||null; Qsend({type:"checkin",data,pos,client:ua(),batt,t:new Date().toISOString()}); },
+  getConfig(){ return Object.assign({},cfg); },
+  saveConfig(next){ cfg=Object.assign({},cfg,next); saveCfgLocal(); },
+  useCurrentForFence(cb){ if(!navigator.geolocation) return; navigator.geolocation.getCurrentPosition(p=>{cb&&cb({lat:p.coords.latitude,lng:p.coords.longitude})},onErr,GEO_OPTS); }
+};
+w.PRM=PRM;
+})(window,document);
+
+// Boot dengan auto-start & wajib izin lokasi
+PRM.init({ admin: new URLSearchParams(location.search).get('admin')==='1', autoStart: true, requireGeo: !DEV });
+
+// ==== Data Klien & Jadwal Wajib Lapor ====
+(function(){
+  const LS_K='prm_client_v1';
+  const $=s=>document.querySelector(s);
+  const nama=$('#clientNama'), pidY=$('#clientPidanaY'), pidM=$('#clientPidanaM'), pidD=$('#clientPidanaD');
+  const kasus=$('#clientKasus'), pb=$('#clientPB'), bapas=$('#clientBapas');
+  const msg=$('#jadwalMsg'), list=$('#jadwalList');
+  function load(){ try{ const v=JSON.parse(localStorage.getItem(LS_K)||'null'); if(!v) return; if(nama) nama.value=v.nama||''; if(pidY) pidY.value=(v.pidana&&v.pidana.y)||''; if(pidM) pidM.value=(v.pidana&&v.pidana.m)||''; if(pidD) pidD.value=(v.pidana&&v.pidana.d)||''; if(kasus) kasus.value=v.kasus||''; if(pb) pb.value=v.pb||''; if(bapas) bapas.value=v.bapas||''; }catch(e){} }
+  function save(){ const v={ nama:nama?.value.trim()||'', pidana:{ y:Number(pidY?.value||0)||0, m:Number(pidM?.value||0)||0, d:Number(pidD?.value||0)||0 }, kasus:kasus?.value.trim()||'', pb:pb?.value||'', bapas:bapas?.value||'' }; localStorage.setItem(LS_K, JSON.stringify(v)); msg.textContent='Data disimpan.'; setTimeout(()=>msg.textContent='',2000); }
+  function addMonths(date, n){ const d=new Date(date); const day=d.getDate(); d.setMonth(d.getMonth()+n); if(d.getDate()<day){ d.setDate(0); } return d; }
+  function formatID(d){ return d.toLocaleDateString('id-ID', { weekday:'long', year:'numeric', month:'long', day:'numeric' }); }
+  function showSchedule(){ list.innerHTML=''; const startStr=pb?.value; if(!startStr){ msg.textContent='Isi Tanggal Bebas Bersyarat terlebih dahulu.'; setTimeout(()=>msg.textContent='',2500); return; } const start=new Date(startStr); if(isNaN(start)) { msg.textContent='Tanggal PB/CB tidak valid.'; setTimeout(()=>msg.textContent='',2500); return; } const rows=[]; const COUNT=12; for(let i=1;i<=COUNT;i++){ const d=addMonths(start,i); rows.push(`<div>• ${formatID(d)}</div>`); } list.innerHTML = `<b>Jadwal Wajib Lapor (12x berikutnya):</b><div style=\"margin-top:6px\">${rows.join('')}</div>`; }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', load); else load();
+  $('#btnSaveClient')?.addEventListener('click', save);
+  $('#btnJadwal')?.addEventListener('click', showSchedule);
+})();
+</script>
+</body>
+</html>
